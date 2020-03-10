@@ -70,7 +70,7 @@ inquirer
                         choices: ["engineer", "intern"],
                         name: "role"
                 }]).then(newMember => {
-                    if(newMember.role == "engineer") {
+                    if(newMember.role === "engineer") {
                         inquirer.prompt([{
                             message: "Enter the engineer's GitHub username",
                             name: "github"
@@ -80,7 +80,7 @@ inquirer
                             addMember();
                         });
                     }
-                    if(newMember.role == "intern") {
+                    if(newMember.role === "intern") {
                         inquirer.prompt([{
                             message: "Enter the intern's school",
                             name: "school"
@@ -92,9 +92,10 @@ inquirer
                     }
                 });
             }
-            if(answer.addMember == false) {
+            if(answer.addMember === false) {
                 console.log(team);
                 // const profile = render.render(team);
+                // console.log(profile);
                 // fs.writeFileSync(outputPath, profile, OUTPUT_DIR);
             };
         });
