@@ -32,11 +32,8 @@ inquirer
     }
     ])
     .then(res => {
-        console.log(res);
         const manager = new Manager(res.name, res.id, res.email, res.officeNumber);
-        console.log(manager);
         team.push(manager);
-        console.log(team);
         addMember();
     });
 
@@ -102,7 +99,6 @@ inquirer
     async function createHTML(arr) {
         try {
             const html = await render(arr);
-            console.log(html);
             fs.writeFile(outputPath, html, function(err) {
                 if(err) {
                     throw err;
