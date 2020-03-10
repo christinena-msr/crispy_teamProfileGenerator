@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/crispysodium/crispy_teamProfileGenerator#readme",
   "dependencies": {
+    "fs": "0.0.1-security",
     "inquirer": "^6.3.1"
   }
 }
