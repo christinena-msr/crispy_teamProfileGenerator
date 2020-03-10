@@ -1,15 +1,15 @@
+const fs = require("fs");
+const path = require("path");
+
+const inquirer = require("inquirer");
+
 const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
+const render = require("./lib/htmlRenderer");
 
-const inquirer = require("inquirer");
-// const path = require("path");
-// const fs = require("fs");
-
-// const OUTPUT_DIR = path.resolve(__dirname, "output")
-// const outputPath = path.join(OUTPUT_DIR, "team.html");
-​
-// const render = require("./lib/htmlRenderer");
+const OUTPUT_DIR = path.resolve(__dirname, "output");
+const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 let team = [];
 
@@ -94,9 +94,22 @@ inquirer
             }
             if(answer.addMember === false) {
                 console.log(team);
-                // const profile = render.render(team);
-                // console.log(profile);
-                // fs.writeFileSync(outputPath, profile, OUTPUT_DIR);
+                createHTML(team);
             };
         });
     };
+
+    async function createHTML(arr) {
+        try {
+            const html = await render(arr);
+            console.log(html);
+            fs.writeFile(outputPath, html, function(err) {
+                if(err) {
+                    throw err;
+                }
+                console.log("Success! html file created!");
+            });
+        } catch(err) {
+            console.log(err);
+        }
+    }
